@@ -41,12 +41,21 @@ func (this *vector) AppendAll(values []interface{}) bool {
     return true
 }
 //插入元素
-func (this *vector) Insert(rank int,values interface{}) bool{
-	if rank < 0 || rank >= len(this.values) {
-		return false
-	}
-	this.values = append(this.values[:rank], append([]interface{}{values}, this.values[rank:]...)...)
-	return true
+func (this *vector) Insert(rank int, value interface{}) bool {
+    if rank < 0 || rank >= len(this.values) {
+        return false
+    }
+    this.values = append(this.values[:rank], append([]interface{}{value}, this.values[rank:]...)...)
+    return true
+}
+ 
+// 插入
+func (this *vector) InsertAll(rank int, values []interface{}) bool {
+    if rank < 0 || rank >= len(this.values) || values == nil || len(values) < 1 {
+        return false
+    }
+    this.values = append(this.values[:rank], append(values, this.values[rank:]...)...)
+    return true
 }
 
 func (this *vector) Remove(rank int) bool {
@@ -82,13 +91,35 @@ func (this *vector) GetRank(value interface{}) int {
 
 	return -1
 }
+//循秩访问
+func (this *vector) Find(value interface{},lo,hi int) int {
+	if(lo > hi){
+		return -1
+	}
+	for i := lo; i < hi; i++ {
+		if reflect.DeepEqual(this.values[i],value){
+			return i
+		}
+	}
 
+	return -1
+}
 func (this *vector) GetValue(rank int) interface{} {
 	if rank < 0 || rank >= len(this.values) {
 		return nil
 	}
 
 	return this.values[rank]
+}
+
+//去除重复元素
+func (this *vector) Deduplicate() {
+	for i := 1; i <= len(this.values); i++ {
+		rank := this.Find(this.values[i],0,i)
+		if( rank >= 0){
+			this.Remove(rank)
+		}
+	}
 }
 
 
