@@ -11,6 +11,7 @@ func main(){
         v.Append(i)
     }
     fmt.Println(*v)
+    fmt.Println(v.Disordered())
     fmt.Println(v.IsEmpty())
     v.Insert(1, 10)
     v.Insert(1, 10)
@@ -27,4 +28,5 @@ func main(){
 	fmt.Println(*v)
     fmt.Println(v.GetValue(1))
     fmt.Println(v.GetValue(100))
+    fmt.Println(v.Disordered())
 }

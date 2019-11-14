@@ -114,13 +114,46 @@ func (this *vector) GetValue(rank int) interface{} {
 
 //去除重复元素
 func (this *vector) Deduplicate() {
-	for i := 1; i <= len(this.values); i++ {
+	for i := 1; i < len(this.values); i++ {
 		rank := this.Find(this.values[i],0,i)
 		if( rank >= 0){
-			this.Remove(rank)
+			this.Remove(i)
 		}
 	}
 }
+
+//是否是有序向量--返回逆序对个数
+func (this *vector) Disordered() int {
+	var n,i int
+	n = 0
+	for i = 1; i < len(this.values); i++ {
+		var a,b int
+		a = this.values[i-1].(int)
+		b = this.values[i].(int)
+		if a > b  {
+			n += 1
+		}
+	}
+	return n
+}
+
+
+//有序向量去重
+func (this *vector) Uniquify(){  //低效算法
+	for i := 0;i < len(this.values) -1; i++ {
+		if(reflect.DeepEqual(this.values[i],this.values[i+1])){
+			this.Remove(i+1)
+		}
+	}
+}
+
+// func (this *vector) Uniquify() {
+// 	var i,j int;
+// 	j = 1
+// 	for i = 0; j < len(this.values) ; i++ {
+
+// 	}
+// }
 
 
 
