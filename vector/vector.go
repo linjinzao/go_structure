@@ -147,14 +147,24 @@ func (this *vector) Uniquify(){  //低效算法
 	}
 }
 
-// func (this *vector) Uniquify() {
-// 	var i,j int;
-// 	j = 1
-// 	for i = 0; j < len(this.values) ; i++ {
-
-// 	}
-// }
-
+//二分查找
+func (this *vector) BinSearch(target,lo,hi int) int {
+START:
+	if lo < hi {
+		mi := (lo + hi) >> 1
+		switch  {
+		case target < this.values[mi].(int):
+			hi = mi
+		case this.values[mi].(int) < target:
+			lo = mi
+		default:
+			return mi
+		}
+		goto START
+	}
+	return -1
+		
+}
 
 
 
