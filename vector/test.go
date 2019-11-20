@@ -23,10 +23,10 @@ func main(){
     v.Remove(-1)
     v.Remove(1)
     v.Remove(100)
-    v.Append(10)
     fmt.Println(*v)
     fmt.Println(v.GetValue(1))
     fmt.Println(v.GetValue(100))
     fmt.Println(v.Disordered())
     fmt.Println(v.BinSearch(2,0,v.Size()))
+    fmt.Println(v.BinSearchB(2,0,v.Size()))
 }

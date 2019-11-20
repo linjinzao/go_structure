@@ -1,7 +1,8 @@
 package vector
 
 import (
-    "reflect"
+	"reflect"
+	"fmt"
 )
 
 type vector struct{
@@ -148,6 +149,7 @@ func (this *vector) Uniquify(){  //低效算法
 }
 
 //二分查找
+//转向左边比较一次，转向右边比较两次  
 func (this *vector) BinSearch(target,lo,hi int) int {
 START:
 	if lo < hi {
@@ -166,6 +168,25 @@ START:
 		
 }
 
+//二分查找b
+//平衡左右两边的比较次数，但需要最终才有结果
+func (this *vector) BinSearchB(target,lo,hi int) int {
+	START:
+		if 1 < hi - lo {
+			mi := (lo + hi) >> 1
+			if target < this.values[mi].(int) {
+				hi = mi
+			}else{
+				lo = mi
+			}
+			goto START
+		}
+	
+		if(target == this.values[lo].(int)){
+			return lo
+		}
+		return -1	
+	}
 
 
 
