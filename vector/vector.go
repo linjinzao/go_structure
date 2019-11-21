@@ -234,6 +234,29 @@ func (this *vector) bubble(lo,hi int) bool {
 }
 
 
+//冒泡排序
+func (this *vector) BubbleSortB(lo,hi int) {
+START:
+	hi = this.bubbleB(lo,hi)
+	if(lo < hi){
+		goto START
+	}
+}
+	
+func (this *vector) bubbleB(lo,hi int) int {
+	var last int = lo
+	START:
+		lo += 1
+		if(lo < hi){
+			if(this.values[lo - 1].(int) > this.values[lo].(int)){
+				last = lo
+				this.values[lo - 1],this.values[lo] = this.values[lo],this.values[lo - 1]
+			}
+			goto START
+		}
+	
+	return lo
+}
 
 
 
