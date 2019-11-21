@@ -28,5 +28,14 @@ func main(){
     fmt.Println(v.GetValue(100))
     fmt.Println(v.Disordered())
     fmt.Println(v.BinSearch(2,0,v.Size()))
+    v.Append(10)
+    v.Append(7)
+    v.Append(8)
+    v.Append(20)
+    fmt.Println(*v)
+    v.BubbleSort(0,v.Size())
+    fmt.Println(*v)
+
+    fmt.Println(v.BinSearchB(6,0,v.Size()))
     fmt.Println(v.BinSearchB(2,0,v.Size()))
 }
