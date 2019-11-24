@@ -33,7 +33,7 @@ func main(){
     v.Append(8)
     v.Append(20)
     fmt.Println(*v)
-    v.BubbleSortB(0,v.Size())
+    v.MergeSort(0,v.Size())
     fmt.Println(*v)
 
     fmt.Println(v.BinSearchB(6,0,v.Size()))

@@ -255,11 +255,48 @@ func (this *vector) bubbleB(lo,hi int) int {
 			goto START
 		}
 	
-	return lo
+	return last
 }
 
 
+//合并排序
+func(this *vector) MergeSort(lo,hi int){
+	if hi - lo < 2 {return}
 
+	mi := (lo + hi) / 2
 
+	this.MergeSort(lo,mi)
+	this.MergeSort(mi + 1, hi)
+
+	this.merge(lo,mi,hi)
+}
+
+func(this *vector) merge(lo,mi,hi int){
+	A := make([]interface{}, hi - lo)
+	B := this.values[lo:mi]
+	C := this.values[mi:hi]
+	lb := mi - lo
+	lc := hi - mi
+
+	var i,j,k int
+
+	START:
+		if (j < lb ) {
+			fmt.Println(j)
+			fmt.Println(k)
+			if ( lc <= k || B[j].(int) < C[k].(int) ) {
+				fmt.Println("j",j)
+				A[i] = B[j]
+				j += 1
+			}else{
+				fmt.Println("k",k)
+				A[i] = C[k]
+				k += 1
+			}
+			i += 1
+			goto START
+		}
+	this.InsertAll(lo,A)
+}
 
 
