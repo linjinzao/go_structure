@@ -7,7 +7,7 @@ import(
 )
 
 func main(){
-	
+
 	log.Println("server start!")
 	http.HandleFunc("/file/upload",handle.UploadHandler)
 	http.HandleFunc("/file/upload/suc",handle.UploadSucHandler)
